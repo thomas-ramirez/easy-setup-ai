@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "test": "vtex-test-tools test",
+    "lint": "tsc --noEmit && eslint --ext ts,tsx ."
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.4",
+    "@types/node": "^11.12.1",
+    "@types/react": "^16.8.10",
+    "@types/react-intl": "^2.3.17",
+    "@vtex/test-tools": "^3.4.1",
+    "@vtex/tsconfig": "^0.4.4",
+    "apollo-client": "^2.4.7",
+    "eslint-config-vtex-react": "^6.9.3",
+    "graphql": "^14.6.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-intl": "^5.10.6",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "3.9.7",
+    "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.1/public/@types/vtex.render-runtime",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.13/public/@types/vtex.styleguide"
+  },
+  "version": "0.0.10"
+}
