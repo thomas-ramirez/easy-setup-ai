@@ -8,7 +8,15 @@ export default class OpenAIClient extends ExternalClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
     super('', ctx, options)
 
-    this.client = new OpenAI({ apiKey: "fech-key-from-app-settings-or-ssm" })
+    const apiKey = process.env.OPENAI_API_KEY || ctx.settings?.openai?.apiKey
+
+    if (!apiKey) {
+      throw new Error(
+        'OpenAI API key not found. Please set OPENAI_API_KEY environment variable or configure it in the app settings.'
+      )
+    }
+
+    this.client = new OpenAI({ apiKey })
   }
 
   public async generateSetupPrompt(prompt: string) {

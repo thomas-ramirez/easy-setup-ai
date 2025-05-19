@@ -1,42 +1,50 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report an issue with Easy Setup AI
+title: '[BUG] '
 labels: bug
+assignees: ''
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Bug Description
+A clear and concise description of the issue.
 
-**To Reproduce**
+## VTEX Environment
+- Account: [ex: myaccount]
+- Workspace: [ex: master]
+- VTEX IO CLI Version: [ex: 2.0.0]
+- Node Version: [ex: 14.x]
+
+## Steps to Reproduce
 Steps to reproduce the behavior:
 
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
+2. Configure '...'
+3. Execute '...'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Expected Behavior
+A clear and concise description of what should happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Error Logs
+```
+Paste relevant error logs here
+```
 
-**Desktop environment:**
+## App Configuration
+- OpenAI API Key configured: [Yes/No]
+- Selected resources: [List the resources that were selected]
+- Custom settings: [Describe any custom configuration]
 
-<!--
-Please paste the ouput of the following command in your issue. It helps us identify your environment and act more quickly to solve your problem.
+## Screenshots
+If applicable, add screenshots to help explain the problem.
 
-$ npx envinfo --system --binaries --browsers
-
-If the problem happens in a specific browser, please state which browser.
---->
-
-**Smartphone environment:**
-
-- Device: [e.g. iPhone6]
-- OS: [e.g. iOS8.1]
-- Browser [e.g. stock browser, safari]
-- Version [e.g. 22]
-
-**Additional context**
+## Additional Context
 Add any other context about the problem here.
+
+## Checklist
+- [ ] I checked if this issue hasn't been reported before
+- [ ] I included all relevant logs
+- [ ] I described the steps to reproduce
+- [ ] I added screenshots if necessary
+- [ ] I verified if the issue occurs in different VTEX environments

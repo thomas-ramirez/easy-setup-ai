@@ -1,18 +1,47 @@
 ---
-name: Question
-about: Ask a question you had while building a store
-labels: question
+name: Question & Help
+about: Get help with Easy Setup AI configuration and usage
+title: '[QUESTION] '
+labels: 'help wanted'
 ---
 
-**What are you trying to accomplish? Please describe.**
-A clear and concise description of what is your question and what you're trying to accomplish in the end is.
+## Question Description
+A clear and concise description of what you're trying to accomplish and what specific help you need.
 
-**What have you tried so far?**
-A clear and concise description of what you tried to do already.
+## Current Setup
+| Environment | Details |
+|-------------|---------|
+| Account | `your-account` |
+| Workspace | `your-workspace` |
+| VTEX IO CLI Version | `vtex --version` |
+| Node Version | `node --version` |
 
-**Additional info**
-Add extra content here (code samples, screenshots,...)
+## What I've Tried
+A clear and concise description of the steps you've already taken to solve this issue.
 
-| Account        | Workspace        |
-| -------------- | ---------------- |
-| `your account` | `your workspace` |
+## Expected vs Actual Behavior
+- Expected: [What you thought would happen]
+- Actual: [What actually happened]
+
+## Configuration Details
+- OpenAI API Key configured: [Yes/No]
+- Selected resources: [List the resources you're trying to configure]
+- Custom settings: [Any custom configuration you've applied]
+
+## Error Messages
+```
+Paste any error messages or logs here
+```
+
+## Screenshots
+If applicable, add screenshots to help explain your question.
+
+## Additional Context
+Add any other context about your question here.
+
+## Checklist
+- [ ] I've checked the documentation
+- [ ] I've searched for similar issues
+- [ ] I've provided all relevant environment details
+- [ ] I've included error messages if any
+- [ ] I've described what I've tried so far
