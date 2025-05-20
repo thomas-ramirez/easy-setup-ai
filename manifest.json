@@ -1,7 +1,7 @@
 {
-  "name": "ai-easy-setup",
+  "name": "easy-setup-ai",
   "vendor": "vtex",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "title": "VTEX AI Easy Setup",
   "description": "Populate the store with a basic setup to B2C and B2B schemas leveraging AIs.",
   "mustUpdateAt": "",
@@ -12,9 +12,7 @@
   "scripts": {
     "prereleasy": "bash lint.sh"
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "billingOptions": {
     "free": true
   },

@@ -1,0 +1,155 @@
+{
+  "title": "Easy Setup AI Configuration",
+  "properties": {
+    "industry": {
+      "title": "Industry",
+      "type": "string",
+      "enum": [
+        "Fashion",
+        "Electronics",
+        "Home & Garden",
+        "Sports",
+        "Food & Beverage",
+        "Beauty",
+        "Toys",
+        "Books",
+        "Automotive",
+        "Health"
+      ],
+      "description": "Select the main industry of your store"
+    },
+    "departments": {
+      "title": "Number of Departments",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 20,
+      "description": "How many departments your store will have"
+    },
+    "categoryLevels": {
+      "title": "Category Levels",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "How many levels of categories (e.g., Electronics > Smartphones > Accessories)"
+    },
+    "products": {
+      "title": "Number of Products",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Total number of products to be created"
+    },
+    "skus": {
+      "title": "Number of SKUs",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5000,
+      "description": "Total number of SKUs to be created"
+    },
+    "multipleSkus": {
+      "title": "Multiple SKUs per Product",
+      "type": "boolean",
+      "description": "Enable multiple SKUs per product (e.g., different sizes and colors)"
+    },
+    "language": {
+      "title": "Store Language",
+      "type": "string",
+      "enum": ["en-US", "pt-BR", "es-ES", "fr-FR"],
+      "description": "Main language of your store"
+    },
+    "priceRange": {
+      "title": "Price Range",
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "description": "Price range for products"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string",
+      "enum": ["USD", "BRL", "EUR", "GBP"],
+      "description": "Main currency of your store"
+    },
+    "priceTables": {
+      "title": "Price Tables",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["silver", "gold", "platinum"]
+      },
+      "description": "Price tables to be created"
+    },
+    "countries": {
+      "title": "Delivery Countries",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["USA", "BRA", "ESP", "FRA", "GBR"]
+      },
+      "description": "Countries where you will deliver"
+    },
+    "warehouses": {
+      "title": "Number of Warehouses",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Number of warehouses to be created"
+    },
+    "docks": {
+      "title": "Docks per Country",
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Number of docks per country"
+    },
+    "paymentMethods": {
+      "title": "Payment Methods",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["credit_card", "bank_transfer", "promissory", "pix", "boleto"]
+      },
+      "description": "Payment methods to be configured"
+    },
+    "installments": {
+      "title": "Installment Configuration",
+      "type": "object",
+      "properties": {
+        "max": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 24
+        },
+        "min": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 12
+        }
+      },
+      "description": "Installment configuration"
+    },
+    "loyaltyProgram": {
+      "title": "Loyalty Program",
+      "type": "boolean",
+      "description": "Enable loyalty program"
+    },
+    "progressiveDiscount": {
+      "title": "Progressive Discount",
+      "type": "boolean",
+      "description": "Enable progressive discount based on quantity"
+    },
+    "aiPrompt": {
+      "title": "Additional AI Instructions",
+      "type": "string",
+      "description": "Additional instructions for AI data generation"
+    }
+  }
+}

@@ -26,8 +26,6 @@ export const TIMEOUT_MS = 9999999
 // The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
-metrics.trackCache('status', memoryCache)
-
 // This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
   // We pass our custom implementation of the clients bag, containing the Status client.
@@ -74,7 +72,7 @@ declare global {
 }
 
 // Export a service that defines route handlers and client options.
-export default new Service({
+export default new Service<Clients, PopulateState, ServiceContext>({
   clients,
   routes: {
     populate: method({

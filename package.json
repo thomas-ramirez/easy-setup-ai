@@ -35,6 +35,7 @@
     "typescript": "^4.1.5"
   },
   "dependencies": {
+    "@vtex/api": "^6.49.1",
     "openai": "^4.81.0"
   }
 }

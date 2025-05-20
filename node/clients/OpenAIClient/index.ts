@@ -1,30 +1,37 @@
 import type { InstanceOptions, IOContext } from '@vtex/api'
 import { ExternalClient } from '@vtex/api'
-import OpenAI from 'openai'
+import axios from 'axios'
 
 export default class OpenAIClient extends ExternalClient {
-  private client: OpenAI
+  private apiKey: string
 
   constructor(ctx: IOContext, options?: InstanceOptions) {
     super('', ctx, options)
 
-    const apiKey = process.env.OPENAI_API_KEY || ctx.settings?.openai?.apiKey
+    this.apiKey = process.env.OPENAI_API_KEY || ctx.settings?.openai?.apiKey
 
-    if (!apiKey) {
+    if (!this.apiKey) {
       throw new Error(
         'OpenAI API key not found. Please set OPENAI_API_KEY environment variable or configure it in the app settings.'
       )
     }
-
-    this.client = new OpenAI({ apiKey })
   }
 
   public async generateSetupPrompt(prompt: string) {
-    const response = await this.client.chat.completions.create({
-      model: 'gpt-4',
-      messages: [{ role: 'system', content: prompt }],
-    })
+    const response = await axios.post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-4',
+        messages: [{ role: 'system', content: prompt }],
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.apiKey}`,
+        },
+      }
+    )
 
-    return JSON.parse(response.choices[0].message.content ?? '{}')
+    return JSON.parse(response.data.choices[0].message.content ?? '{}')
   }
 }

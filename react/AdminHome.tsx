@@ -38,21 +38,24 @@ interface SeedStatus {
 }
 
 const industryOptions: SelectBoxGroup[] = [
-  { label: "Apparel & Acessories", value: "apparel-and-acessories" },
-  { label: "Beauty & Health", value: "beauty-and-health" },
-  { label: "Books & Education", value: "books-and-education" },
-  { label: "Cars & Autoparts", value: "cars-and-autoparts" },
-  { label: "Department Stores", value: "department-stores" },
-  { label: "Eletronics & Mobiles", value: "eletronics-and-mobiles" },
-  { label: "Foods & Beverages", value: "foods-and-beverages" },
-  { label: "Grocery", value: "grocery" },
-  { label: "Home Appliances", value: "home-appliances" },
-  { label: "Home, Furniture & Decoration", value: "home-Furniture-and-decoration" },
-  { label: "Jewelry", value: "jewelry" },
-  { label: "Others", value: "others" },
-  { label: "Pet Shop", value: "pet-shop" },
-  { label: "Sports & Fitness", value: "sports-fitness" },
-  { label: "Toys & Hobbies", value: "toys-hobbies" },
+  { label: 'Apparel & Acessories', value: 'apparel-and-acessories' },
+  { label: 'Beauty & Health', value: 'beauty-and-health' },
+  { label: 'Books & Education', value: 'books-and-education' },
+  { label: 'Cars & Autoparts', value: 'cars-and-autoparts' },
+  { label: 'Department Stores', value: 'department-stores' },
+  { label: 'Eletronics & Mobiles', value: 'eletronics-and-mobiles' },
+  { label: 'Foods & Beverages', value: 'foods-and-beverages' },
+  { label: 'Grocery', value: 'grocery' },
+  { label: 'Home Appliances', value: 'home-appliances' },
+  {
+    label: 'Home, Furniture & Decoration',
+    value: 'home-Furniture-and-decoration',
+  },
+  { label: 'Jewelry', value: 'jewelry' },
+  { label: 'Others', value: 'others' },
+  { label: 'Pet Shop', value: 'pet-shop' },
+  { label: 'Sports & Fitness', value: 'sports-fitness' },
+  { label: 'Toys & Hobbies', value: 'toys-hobbies' },
 ]
 
 const languageOptions: SelectBoxGroup[] = [
@@ -114,6 +117,7 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
@@ -124,6 +128,7 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
@@ -134,6 +139,7 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
@@ -144,6 +150,7 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
@@ -154,6 +161,7 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
@@ -164,13 +172,14 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         horizontalPosition: 'right',
         verticalPosition: 'top',
       })
+
       return false
     }
 
     return true
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (!validateOptions()) {
       return
     }
@@ -193,26 +202,36 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
     setProgress(40)
 
     try {
-      const res = await fetch("/_v/api/ai-easy-setup/seed", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/_v/api/ai-easy-setup/seed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
-      const result: SeedResponse = await res.json()
+      const data = await res.json()
 
-      setSeedStatus({ error: null, result })
-
-      setProgress(70)
+      setSeedStatus({ error: null, result: data })
       setSetupSuccess(true)
-    } catch (error) {
-      setSetupSuccess(false)
-      setSeedStatus({ error, result: null })
-    } finally {
       setProgress(100)
       setIsModalOpen(true)
+    } catch (error) {
+      setSeedStatus({ error, result: null })
+      setSetupSuccess(false)
+      setProgress(0)
+      setIsModalOpen(true)
     }
-  }
+  }, [
+    industry,
+    aiPrompt,
+    departments,
+    categoryLevels,
+    products,
+    skus,
+    isFranchise,
+    language,
+    multipleSkus,
+    validateOptions,
+  ])
 
   return (
     <Layout>
@@ -260,11 +279,17 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
           onChange={(e: any) => setSkus(Number(e.target.value))}
         />
         <div className="flex items-center gap-2">
-          <Switch checked={isFranchise} onChange={() => setIsFranchise(!isFranchise)} />
+          <Switch
+            checked={isFranchise}
+            onChange={() => setIsFranchise(!isFranchise)}
+          />
           <span>Franchise Mode</span>
         </div>
         <div className="flex items-center gap-2">
-          <Switch checked={multipleSkus} onChange={() => setMultipleSkus(!multipleSkus)} />
+          <Switch
+            checked={multipleSkus}
+            onChange={() => setMultipleSkus(!multipleSkus)}
+          />
           <span>Enable Multiple SKUs per Product</span>
         </div>
         <Button onClick={handleSubmit}>Generate Setup</Button>
@@ -272,10 +297,30 @@ const AdminHome: FunctionComponent<AdminHomeProps> = ({ showToast }) => {
         <ModalDialog
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          confirmation={{ label: "OK", onClick: () => setIsModalOpen(false) }}
+          confirmation={{ label: 'OK', onClick: () => setIsModalOpen(false) }}
         >
-          {setupSuccess ? <IconSuccess size={40} color="green" /> : <IconFailure size={40} color="red" />}
-          <p>{setupSuccess ? "Setup completed successfully!" : "Setup failed. Please try again."}</p>
+          {setupSuccess ? (
+            <IconSuccess size={40} color="green" />
+          ) : (
+            <IconFailure size={40} color="red" />
+          )}
+          <p>
+            {setupSuccess
+              ? 'Setup completed successfully!'
+              : 'Setup failed. Please try again.'}
+          </p>
+          {seedStatus.result && (
+            <div className="mt4">
+              <h3>Setup Details:</h3>
+              <pre>{JSON.stringify(seedStatus.result, null, 2)}</pre>
+            </div>
+          )}
+          {seedStatus.error && (
+            <div className="mt4">
+              <h3>Error Details:</h3>
+              <pre>{JSON.stringify(seedStatus.error, null, 2)}</pre>
+            </div>
+          )}
         </ModalDialog>
       </PageBlock>
     </Layout>

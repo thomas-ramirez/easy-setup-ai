@@ -2,5 +2,11 @@
   "admin.app.ai-easy-setup": {
     "component": "AdminHome",
     "path": "/admin/app/ai-easy-setup"
+  },
+  "easy-setup": {
+    "actionBar": {
+      "label": "Easy Setup AI"
+    },
+    "blocks": ["admin/easy-setup"]
   }
 }
